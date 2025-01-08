@@ -23,7 +23,7 @@ app.use(express.json());
 // Rate Limiting to prevent brute-force attacks
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Limit each IP to 5 requests per window
+  max: 500, // Limit each IP to 5 requests per window
   message: 'Too many requests from thi  s IP, please try again later.',
 });
 
