@@ -15,10 +15,18 @@ connectDB();
 // Initialize Express app
 const app = express();
 
-// Middleware
-app.use(helmet());
-app.use(cors());
-app.use(express.json());
+// CORS configuration
+const corsOptions = {
+  origin: 'http://localhost:5173', // Allow requests from this origin
+  methods: ['GET', 'POST'], // Allow GET and POST requests
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow certain headers
+};
+
+// Enable CORS with options
+app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));  // Preflight request handler
+
 
 // Rate Limiting to prevent brute-force attacks
 const limiter = rateLimit({
